@@ -5,7 +5,7 @@
 [![Paper](https://img.shields.io/badge/📄_Paper-arXiv-b31b1b.svg)](PAPER_LINK)
 [![Dataset](https://img.shields.io/badge/🗂️_Dataset-Kaggle-20beff.svg)](https://www.kaggle.com/datasets/dung8204/device-directed-television-dataset-dtd)
 [![Code](https://img.shields.io/badge/💻_Code-GitHub-171515.svg)](https://github.com/dungdt-infopstats/Device-Directed-Speech-Segmentation)
-[![License](https://img.shields.io/badge/📋_License-MIT-green.svg)](LICENSE_LINK)
+[![License](https://img.shields.io/badge/📋_License-MIT-green.svg)](https://github.com/dungdt-infopstats/Device-Directed-Speech-Segmentation/blob/main/LICENSE)
 
 *A novel frame-level approach for isolating device-directed speech segments in virtual assistant applications*
 
