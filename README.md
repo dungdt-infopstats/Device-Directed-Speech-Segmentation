@@ -74,14 +74,6 @@ Device-directed Speech Segmentation (DDSS) presents a promising approach to virt
 
 ## 📚 Citation
 
-```bibtex
-@article{do2025device,
-  title={Device-directed Speech Segmentation: A New Paradigm Beyond Detection},
-  author={Do, Tri Dung and Ta, Bao Thang and Do, Van Hai},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2025}
-}
-```
 
 ## 📄 License
 
