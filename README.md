@@ -92,5 +92,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Tri Dung Do** - dungdt.research@gmail.com
 ---
 <div align="center">
-<i>Research conducted during internship at Viettel AI - Voice Team</i>
+<i>Research conducted during internship at Voice Team - Viettel AI ❤️</i>
 </div>
