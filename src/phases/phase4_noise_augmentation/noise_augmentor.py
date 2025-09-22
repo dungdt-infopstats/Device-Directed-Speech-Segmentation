@@ -316,3 +316,4 @@ class NoiseAugmentor(BaseProcessor):
     def get_config(self) -> Dict:
         """Return processor configuration."""
         return self.config
+    

@@ -37,13 +37,18 @@ phase2:
   model_config:
     device: "cuda"
 
-# Phase 3: Audio Concatenation Configuration
+# Phase 3: Speech Cleaning Configuration (Force Alignment + Concatenation)
 phase3:
-  padding_ms: 1000
-  max_duration: 12.0
-  min_duration: 1.0
+  # Force alignment settings
+  use_gpu: true
+  model_size: "medium"  # Whisper model size: tiny, base, small, medium, large
+  max_workers: 4
+  padding: 0.3  # Seconds to add before/after aligned audio
+  cant_clean_list: []
+
+  # Concatenation settings
   bad_list: []  # List of files to skip
-  post_fix: ""  # Audio file suffix
+  post_fix: ""  # Audio file suffix (e.g., "_trimmed" if using force alignment)
 
 # Phase 4: Noise Augmentation Configuration
 phase4:

@@ -12,7 +12,7 @@ from typing import Dict, Any, Optional, List
 from ..core.config import Config
 from ..phases.phase1_text_synthesis.main import Phase1TextSynthesis
 from ..phases.phase2_speech_synthesis.main import Phase2SpeechSynthesis
-from ..phases.phase3_concatenation.main import Phase3Concatenation
+from ..phases.phase3_force_alignment.main import Phase3SpeechCleaning
 from ..phases.phase4_noise_augmentation.main import Phase4NoiseAugmentation
 
 
@@ -59,7 +59,7 @@ class PipelineExecutor:
             self.phases['phase2'] = Phase2SpeechSynthesis(self.config.config)
 
         if 'phase3' in phases:
-            self.phases['phase3'] = Phase3Concatenation(self.config.config)
+            self.phases['phase3'] = Phase3SpeechCleaning(self.config.config)
 
         if 'phase4' in phases:
             self.phases['phase4'] = Phase4NoiseAugmentation(self.config.config)
@@ -131,9 +131,10 @@ class PipelineExecutor:
                 'execution_time': time.time() - start_time
             }
 
-    def run_phase3(self, input_dir: str = None, output_dir: str = None) -> Dict[str, Any]:
-        """Execute Phase 3: Audio concatenation."""
-        self.logger.info("Starting Phase 3: Audio Concatenation")
+    def run_phase3(self, input_dir: str = None, output_dir: str = None,
+                   enable_force_alignment: bool = True) -> Dict[str, Any]:
+        """Execute Phase 3: Speech cleaning (force alignment + concatenation)."""
+        self.logger.info("Starting Phase 3: Speech Cleaning")
         start_time = time.time()
 
         try:
@@ -142,19 +143,25 @@ class PipelineExecutor:
 
             results = self.phases['phase3'].run(
                 input_dir=input_dir,
-                output_dir=output_dir
+                output_dir=output_dir,
+                enable_force_alignment=enable_force_alignment
             )
 
             execution_time = time.time() - start_time
+            concat_results = results.get('concatenation', [])
+            alignment_results = results.get('force_alignment', {})
+
             result = {
                 'success': True,
                 'phase': 'phase3',
                 'execution_time': execution_time,
-                'output_records': len(results),
-                'output_dir': output_dir or self.config.get('data.output_dir') + '/phase3'
+                'output_records': len(concat_results) if concat_results else 0,
+                'output_dir': output_dir or self.config.get('data.output_dir') + '/phase3',
+                'force_alignment_enabled': enable_force_alignment,
+                'alignment_stats': alignment_results
             }
 
-            self.logger.info(f"Phase 3 completed in {execution_time:.2f}s - {len(results)} files processed")
+            self.logger.info(f"Phase 3 completed in {execution_time:.2f}s - {len(concat_results) if concat_results else 0} files processed")
             return result
 
         except Exception as e:

@@ -16,6 +16,9 @@ openai>=1.0.0
 pyyaml>=6.0
 tqdm>=4.64.0
 
+# Speech processing
+faster-whisper>=0.10.0  # For Phase 3 force alignment
+
 # F5-TTS (install separately)
 # pip install f5-tts
 

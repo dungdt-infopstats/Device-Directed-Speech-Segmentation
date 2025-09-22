@@ -8,7 +8,7 @@ This pipeline generates synthetic speech data for TV/device command recognition 
 
 1. **Phase 1**: Text synthesis and generation using LLMs
 2. **Phase 2**: Speech synthesis using F5-TTS with reference audio
-3. **Phase 3**: Audio concatenation with text label integration
+3. **Phase 3**: Speech cleaning with force alignment and concatenation
 4. **Phase 4**: Noise augmentation for robustness
 
 ## 🏗️ Architecture
@@ -20,7 +20,7 @@ src/
 ├── phases/                  # Individual pipeline phases
 │   ├── phase1_text_synthesis/
 │   ├── phase2_speech_synthesis/
-│   ├── phase3_concatenation/
+│   ├── phase3_force_alignment/    # Speech cleaning
 │   └── phase4_noise_augmentation/
 ├── utils/                   # Common utilities
 └── pipeline/                # Pipeline orchestration
@@ -67,9 +67,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. **Install F5-TTS for Phase 2:**
+4. **Install additional dependencies:**
 ```bash
+# Install F5-TTS for Phase 2
 pip install f5-tts
+
+# Install faster-whisper for Phase 3 force alignment
+pip install faster-whisper
 ```
 
 5. **Set up environment variables:**
@@ -250,13 +254,13 @@ python main.py --validate
 # Step 3: Run pipeline phases
 python main.py --phases phase1      # Generate text (requires OpenAI API)
 python main.py --phases phase2      # Synthesize speech (requires F5-TTS)
-python main.py --phases phase3      # Concatenate audio
+python main.py --phases phase3      # Clean and concatenate audio (requires Whisper)
 python main.py --phases phase4      # Add noise augmentation
 
 # Step 4: Check outputs
 ls data/processed/phase1/   # Generated text JSON files
 ls data/processed/phase2/   # Synthesized speech files
-ls data/processed/phase3/   # Concatenated audio with labels
+ls data/processed/phase3/   # Cleaned and concatenated audio with labels
 ls data/processed/phase4/   # Final augmented audio dataset
 ```
 
@@ -348,14 +352,16 @@ Converts text to speech using F5-TTS with reference-based generation:
 - `ReferenceCache`: VCTK reference management
 - `SpeechSynthesis`: F5-TTS integration
 
-### Phase 3: Audio Concatenation
+### Phase 3: Speech Cleaning
 
-Concatenates audio segments and creates annotations:
-- Automatic segment timing calculation
+Combines force alignment and audio concatenation:
+- **Force Alignment**: Uses Whisper to trim audio to actual speech content
+- **Audio Concatenation**: Combines segments with precise timing
 - Text label extraction from Phase 2
 - Enhanced JSON format with active text
 
 **Key Components:**
+- `OptimizedSpeechCleaning`: Whisper-based force alignment
 - `AudioConcatenator`: Audio processing and labeling
 - `get_active_text_labels()`: Text extraction utility
 
@@ -386,7 +392,9 @@ data/
 └── processed/            # Pipeline outputs
     ├── phase1/           # Generated text
     ├── phase2/           # Synthesized speech
-    ├── phase3/           # Concatenated audio
+    ├── phase3/           # Cleaned and concatenated audio
+    │   ├── trimmed_speech/     # Force-aligned audio
+    │   └── concatenated_speech/ # Final concatenated audio with labels
     └── phase4/           # Augmented final data
 ```
 
