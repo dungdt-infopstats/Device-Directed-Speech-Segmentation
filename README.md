@@ -24,8 +24,11 @@ Device-directed Speech Segmentation (DDSS) presents a promising approach to virt
 - 📊 **Public DTD Dataset** - First open dataset with 330+ hours of TV-domain commands
 - 🤖 **Multiple Model Variants** - Acoustic, ASR, and Fusion-based architectures
 
-## 🚀 Installation
+## 🚀 Setup
 
+> **📖 Documentation Reference**  
+> Complete setup instructions are maintained in the project's documentation directory.  
+> **Link**: [Setup Documentation](https://github.com/dungdt-infopstats/Device-Directed-Speech-Segmentation/tree/main/docs)
 ## 📁 Dataset
 
 ### 🔗 Access
