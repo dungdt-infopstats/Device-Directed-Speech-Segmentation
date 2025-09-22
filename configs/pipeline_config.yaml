@@ -1,0 +1,61 @@
+# TV Command Synthesis Pipeline Configuration
+
+# Data configuration
+data:
+  content_dir: "data/content"
+  commands_dir: "data/commands"
+  output_dir: "data/processed"
+
+# Phase 1: Text Synthesis Configuration
+phase1:
+  prompt_gen_param:
+    num_samples_command: 5
+    num_samples_content: 5
+    chain_length: 3
+    generated_nums: 4
+    prompt_types:
+      - "non_active"
+      - "single_active"
+      - "single_mix"
+      - "chain_active"
+      - "chain_mix"
+
+  text_gen_param:
+    model: "gpt-4o-mini"
+    temperature: 1.0
+
+  batch_config:
+    loop: 5
+    file_num: 50
+    start: 100
+
+# Phase 2: Speech Synthesis Configuration
+phase2:
+  ref_folder_path: "data/external/vctk/filtered_audio"
+  json_folder_path: "data/external/vctk/filtered_json"
+  num_workers: 4
+  model_config:
+    device: "cuda"
+
+# Phase 3: Audio Concatenation Configuration
+phase3:
+  padding_ms: 1000
+  max_duration: 12.0
+  min_duration: 1.0
+  bad_list: []  # List of files to skip
+  post_fix: ""  # Audio file suffix
+
+# Phase 4: Noise Augmentation Configuration
+phase4:
+  noise_folders:
+    - "data/external/musan/speech/us-gov"
+    - "data/external/musan/speech/librivox"
+  target_sr: 16000
+  snr_range: [-5, 20]
+  augmentation_ranges:
+    prepend_range: [0.5, 2]
+    append_range: [0.5, 2]
+    overlap_range: [0.5, 2]
+  ratio_range: true
+  min_range_s: 1
+  seed: null  # Set for reproducible results

@@ -1,0 +1,39 @@
+# Core dependencies
+pandas>=1.5.0
+numpy>=1.21.0
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# Audio processing
+soundfile>=0.12.0
+librosa>=0.10.0
+pydub>=0.25.0
+
+# Text processing and LLM
+openai>=1.0.0
+
+# Configuration and utilities
+pyyaml>=6.0
+tqdm>=4.64.0
+
+# F5-TTS (install separately)
+# pip install f5-tts
+
+# Optional dependencies for specific features
+# CUDA support (for PyTorch)
+# Install from: https://pytorch.org/get-started/locally/
+
+# Development dependencies (optional)
+pytest>=7.0.0
+black>=22.0.0
+flake8>=5.0.0
+
+# Jupyter notebooks (if using)
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Additional audio processing
+mutagen>=1.45.0  # For audio metadata
+
+# For web downloads (if needed)
+gdown>=4.0.0  # Google Drive downloads

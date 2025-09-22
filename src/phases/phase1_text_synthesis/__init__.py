@@ -1,0 +1,1 @@
+"""Phase 1: Text synthesis and generation."""

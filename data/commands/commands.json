@@ -1,0 +1,22 @@
+[
+  {"command": "play"},
+  {"command": "stop"},
+  {"command": "pause"},
+  {"command": "resume"},
+  {"command": "search"},
+  {"command": "find"},
+  {"command": "open"},
+  {"command": "close"},
+  {"command": "start"},
+  {"command": "end"},
+  {"command": "skip"},
+  {"command": "next"},
+  {"command": "previous"},
+  {"command": "volume up"},
+  {"command": "volume down"},
+  {"command": "mute"},
+  {"command": "unmute"},
+  {"command": "record"},
+  {"command": "delete"},
+  {"command": "save"}
+]

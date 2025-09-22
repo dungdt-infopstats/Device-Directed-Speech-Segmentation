@@ -1,0 +1,1 @@
+"""Core abstractions and base classes for the synthesis pipeline."""
