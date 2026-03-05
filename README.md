@@ -1,4 +1,4 @@
-# Device-Directed Speech Segmentation: A New Paradigm Beyond Detection
+# Device-Directed Speech Segmentation
 
 <div align="center">
 
