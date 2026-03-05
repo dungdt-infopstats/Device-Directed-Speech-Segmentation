@@ -82,6 +82,7 @@ Device-directed Speech Segmentation (DDSS) presents a promising approach to virt
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+<!--
 ## 👥 Contact
 
 - **Tri Dung Do** - dungdt.research@gmail.com
@@ -89,3 +90,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
 <i>Research conducted during internship at Voice Team - Viettel AI ❤️</i>
 </div>
+-->
